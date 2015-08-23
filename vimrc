@@ -5,8 +5,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
-set wildignore+=temp/**,log/**,*.log
-
 " Dependencies of snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -32,7 +30,7 @@ Bundle 'tomasr/molokai'
 Bundle 'vim-ruby/vim-ruby'
 " Surround your code :)
 Bundle 'tpope/vim-surround'
-" TRRRRRmpletions
+" Tabs impletions
 Bundle 'ervandew/supertab'
 " Slim syntax 
 Bundle 'slim-template/vim-slim'
@@ -49,16 +47,22 @@ Bundle 'tpope/vim-dispatch'
 " Gist
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+" File renaming
 Bundle 'danro/rename.vim'
-
-Bundle 'nono/vim-handlebars'
+" File explorer
 Bundle 'scrooloose/nerdtree'
+" You got it :)
 Bundle 'vim-scripts/vim-auto-save'
+" Run terminal in vim
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/vimshell.vim'
+" Code search engine
 Bundle 'rking/ag.vim'
+" Block ending
 Bundle 'tpope/vim-endwise'
+" Easier html building 
 Bundle 'mattn/emmet-vim'
+" Ctags 
 Bundle 'szw/vim-tags'
 
 set tags=./tags; " Set tags directory
@@ -102,6 +106,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
 " Remove highlights with leader + enter
 nmap <Leader><CR> :nohlsearch<cr>
 
@@ -122,6 +127,7 @@ set laststatus=2
 
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:vim_tags_auto_generate = 1
+let g:vim_tags_gems_tags_command = "{CTAGS} -R {OPTIONS} `bundle show --paths` 2>/dev/null"
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
@@ -130,14 +136,24 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " Sane ag command
-let g:agprg='ag --nocolor --nogroup --column --ignore tmp --ignore log --ignore *.log'
+let g:agprg='ag --nocolor --nogroup --column --ignore tmp --ignore log --ignore *.log --ignore coverage'
 
+nnoremap D "dD
+vnoremap D "dD
 nnoremap d "dd
 vnoremap d "dd
+nnoremap X "xX
+vnoremap X "xX
 nnoremap x "xx
 vnoremap x "xx
+nnoremap C "cC
+vnoremap C "cC
 nnoremap c "cc
 vnoremap c "cc
+nnoremap S "sS
+vnoremap S "sS
+nnoremap s "ss
+vnoremap s "ss
 
 " easy-motion keys
 nmap . <Plug>(easymotion-s2)
@@ -155,7 +171,7 @@ set cuc cul"
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log
 """"""""""""""""""""""""""""""""""""""""
 " BACKUP / TMP FILES
 """"""""""""""""""""""""""""""""""""""""
