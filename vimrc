@@ -19,7 +19,7 @@ Bundle 'gmarik/vundle'
 " Rails :/
 Bundle 'tpope/vim-rails'
 " Snippets for our use :)
-Bundle 'garbas/vim-snipmate'
+" Bundle 'garbas/vim-snipmate'
 " Commenting and uncommenting stuff
 Bundle 'tomtom/tcomment_vim'
 " Beutiful solarized theme
@@ -34,6 +34,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'ervandew/supertab'
 " Slim syntax 
 Bundle 'slim-template/vim-slim'
+" HTML
+Bundle 'othree/html5.vim'
 " CoffeeScript syntax
 Bundle 'kchmck/vim-coffee-script'
 " Fuzzu finder for vim (CTRL+P)
@@ -64,6 +66,16 @@ Bundle 'tpope/vim-endwise'
 Bundle 'mattn/emmet-vim'
 " Ctags 
 Bundle 'szw/vim-tags'
+" Line movings
+Bundle 'matze/vim-move'
+" Javascript
+Bundle 'pangloss/vim-javascript'
+" Git diff
+Bundle 'airblade/vim-gitgutter'
+" Awesome syntax checker
+Bundle 'scrooloose/syntastic'
+" History
+Bundle 'sjl/gundo.vim'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -129,6 +141,9 @@ let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:vim_tags_auto_generate = 1
 let g:vim_tags_gems_tags_command = "{CTAGS} -R {OPTIONS} `bundle show --paths` 2>/dev/null"
 
+" Move line with Ctrl
+let g:move_key_modifier = 'C'
+
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$',
@@ -159,6 +174,9 @@ vnoremap s "ss
 nmap . <Plug>(easymotion-s2)
 nmap , <Plug>(easymotion-t2)
 
+" Gundo key
+nnoremap <F5> :GundoToggle<CR>
+
 " Removing escape
 ino jj <esc>
 cno jj <c-c>
@@ -171,7 +189,7 @@ set cuc cul"
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components
 """"""""""""""""""""""""""""""""""""""""
 " BACKUP / TMP FILES
 """"""""""""""""""""""""""""""""""""""""
@@ -191,9 +209,9 @@ set backup
 if isdirectory($HOME . '/.vim/swap') == 0
 	:silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
 endif
-set directory=./.vim-swap//
-set directory+=~/.vim/swap//
-set directory+=~/tmp//
+set directory=./.vim-swap/
+set directory+=~/.vim/swap/
+set directory+=~/tmp/
 set directory+=.
 
 " viminfo stores the the state of your previous editing session
@@ -207,8 +225,8 @@ if exists("+undofile")
 	if isdirectory($HOME . '/.vim/undo') == 0
 		:silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 	endif
-	set undodir=./.vim-undo//
-	set undodir+=~/.vim/undo//
+	set undodir=./.vim-undo/
+	set undodir+=~/.vim/undo/
 	set undofile
 endif
 
