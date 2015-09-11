@@ -6,76 +6,80 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " Dependencies of snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/vim-snippets"
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'honza/vim-snippets'
 
 " Good looking bottom :)
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 " Git tools
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Dependency managment
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 " Rails :/
-Bundle 'tpope/vim-rails'
+Plugin 'tpope/vim-rails'
 " Snippets for our use :)
-" Bundle 'garbas/vim-snipmate'
+" Plugin 'garbas/vim-snipmate'
 " Commenting and uncommenting stuff
-Bundle 'tomtom/tcomment_vim'
+Plugin 'tomtom/tcomment_vim'
 " Beutiful solarized theme
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 " Molokai theme
-Bundle 'tomasr/molokai'
+Plugin 'tomasr/molokai'
 " Vim Ruby
-Bundle 'vim-ruby/vim-ruby'
+Plugin 'vim-ruby/vim-ruby'
 " Surround your code :)
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " Tabs impletions
-Bundle 'ervandew/supertab'
+Plugin 'ervandew/supertab'
 " Slim syntax 
-Bundle 'slim-template/vim-slim'
+Plugin 'slim-template/vim-slim'
 " HTML
-Bundle 'othree/html5.vim'
+Plugin 'othree/html5.vim'
 " CoffeeScript syntax
-Bundle 'kchmck/vim-coffee-script'
+Plugin 'kchmck/vim-coffee-script'
 " Fuzzu finder for vim (CTRL+P)
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " Ruby Tests
-Bundle 'skalnik/vim-vroom'
+Plugin 'skalnik/vim-vroom'
 " Easy motion for easy motion
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 " Running tests in tmux session
-Bundle 'tpope/vim-dispatch'
+Plugin 'tpope/vim-dispatch'
 " Gist
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 " File renaming
-Bundle 'danro/rename.vim'
+Plugin 'danro/rename.vim'
 " File explorer
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " You got it :)
-Bundle 'vim-scripts/vim-auto-save'
+Plugin 'vim-scripts/vim-auto-save'
 " Run terminal in vim
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/vimshell.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimshell.vim'
 " Code search engine
-Bundle 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 " Block ending
-Bundle 'tpope/vim-endwise'
+Plugin 'tpope/vim-endwise'
 " Easier html building 
-Bundle 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 " Ctags 
-Bundle 'szw/vim-tags'
+Plugin 'szw/vim-tags'
 " Line movings
-Bundle 'matze/vim-move'
+Plugin 'matze/vim-move'
 " Javascript
-Bundle 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
 " Git diff
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 " Awesome syntax checker
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " History
-Bundle 'sjl/gundo.vim'
+Plugin 'sjl/gundo.vim'
+" Multicursor
+Plugin 'terryma/vim-multiple-cursors'
+" Resent files
+Plugin 'yegappan/mru'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -94,6 +98,11 @@ augroup myfiletypes
 	autocmd FileType ruby,eruby,yaml,markdown set ai sw=2 sts=2 et
 augroup END
 " ================
+
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " Syntax highlighting and theme
 
@@ -132,6 +141,7 @@ let g:vroom_use_dispatch = 1
 let g:vroom_use_zeus = 1
 
 map <leader>e :NERDTree<cr>
+map <leader>] :MRU<cr>
 
 let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
@@ -146,7 +156,7 @@ let g:move_key_modifier = 'C'
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$\|vendor\/cache$',
   \ 'file': '\.exe$\|\.so$\|\.dat$'
   \ }
 
@@ -189,7 +199,7 @@ set cuc cul"
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components,vendor/cache/*
 """"""""""""""""""""""""""""""""""""""""
 " BACKUP / TMP FILES
 """"""""""""""""""""""""""""""""""""""""
