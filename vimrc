@@ -80,6 +80,8 @@ Plugin 'sjl/gundo.vim'
 Plugin 'terryma/vim-multiple-cursors'
 " Resent files
 Plugin 'yegappan/mru'
+" Fancy start screen
+Plugin 'mhinz/vim-startify'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -192,10 +194,8 @@ ino jj <esc>
 cno jj <c-c>
 vno v <esc>
 
-" highlight the current line
-set cursorline
 " Highlight active column
-set cuc cul"
+set cuc cul
 
 " Tab completion
 set wildmode=list:longest,list:full
