@@ -80,8 +80,6 @@ Plugin 'sjl/gundo.vim'
 Plugin 'terryma/vim-multiple-cursors'
 " Resent files
 Plugin 'yegappan/mru'
-" Fancy start screen
-Plugin 'mhinz/vim-startify'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -240,9 +238,8 @@ if exists("+undofile")
 	set undofile
 endif
 
+" Ukrainian langmap
+set langmap=’йцукенгшщзхїфівапролджєячсмитьбю'ЙЦУКЕHГШЩЗХЪФІВАПРОЛДЖЄЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
 " Ruby hash syntax conversion
 nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
-
-" Increment numbers
-nnoremap <A-a> <C-a>
-nnoremap <A-x> <C-x>
