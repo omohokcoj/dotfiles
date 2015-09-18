@@ -117,6 +117,9 @@ let g:rehash256=1
 set t_Co=256
 "colorscheme molokai
 
+" css formater
+autocmd filetype css setlocal equalprg=csstidy\ -\ --silent=true 
+
 " Show trailing whitespace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
