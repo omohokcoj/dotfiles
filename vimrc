@@ -78,8 +78,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'sjl/gundo.vim'
 " Multicursor
 Plugin 'terryma/vim-multiple-cursors'
-" Resent files
-Plugin 'yegappan/mru'
+" Autoformater
+Plugin 'Chiel92/vim-autoformat'
+" AutoComplete
+Plugin 'Valloric/YouCompleteMe'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -92,10 +94,10 @@ syntax on                 " Enable syntax highlighting
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
 augroup myfiletypes
-	" Clear old autocmds in group
-	autocmd!
-	" autoindent with two spaces, always expand tabs
-	autocmd FileType ruby,eruby,yaml,markdown set ai sw=2 sts=2 et
+  " Clear old autocmds in group
+  autocmd!
+  " autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,eruby,yaml,markdown set ai sw=2 sts=2 et
 augroup END
 " ================
 
@@ -141,7 +143,8 @@ let g:vroom_use_dispatch = 1
 let g:vroom_use_zeus = 1
 
 map <leader>e :NERDTree<cr>
-map <leader>] :MRU<cr>
+map <leader>] :CtrlPMRU<cr>
+map <leader>= :Autoformat<cr>
 
 let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
@@ -156,9 +159,9 @@ let g:move_key_modifier = 'C'
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$\|vendor\/cache$',
-  \ 'file': '\.exe$\|\.so$\|\.dat$'
-  \ }
+      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$\|vendor\/cache$',
+      \ 'file': '\.exe$\|\.so$\|\.dat$'
+      \ }
 
 " Sane ag command
 let g:agprg='ag --nocolor --nogroup --column --ignore tmp --ignore log --ignore *.log --ignore coverage'
@@ -198,12 +201,12 @@ set cuc cul
 " Tab completion
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components,vendor/cache/*
-""""""""""""""""""""""""""""""""""""""""
+
 " BACKUP / TMP FILES
-""""""""""""""""""""""""""""""""""""""""
 if isdirectory($HOME . '/.vim/backup') == 0
-	:silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
+  :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
 endif
+
 set backupdir-=.
 set backupdir+=.
 set backupdir-=~/
@@ -215,8 +218,9 @@ set backup
 " " If you have .vim-swap in the current directory, it'll use that.
 " " Otherwise it saves it to ~/.vim/swap, ~/tmp or .
 if isdirectory($HOME . '/.vim/swap') == 0
-	:silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
+  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
 endif
+
 set directory=./.vim-swap/
 set directory+=~/.vim/swap/
 set directory+=~/tmp/
@@ -226,16 +230,16 @@ set directory+=.
 set viminfo+=n~/.vim/viminfo
 
 if exists("+undofile")
-	" undofile - This allows you to use undos after exiting and restarting
-	" This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-	" :help undo-persistence
-	" This is only present in 7.3+
-	if isdirectory($HOME . '/.vim/undo') == 0
-		:silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-	endif
-	set undodir=./.vim-undo/
-	set undodir+=~/.vim/undo/
-	set undofile
+  " undofile - This allows you to use undos after exiting and restarting
+  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo/
+  set undodir+=~/.vim/undo/
+  set undofile
 endif
 
 " Ukrainian langmap
