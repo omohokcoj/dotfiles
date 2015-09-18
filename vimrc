@@ -78,8 +78,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'sjl/gundo.vim'
 " Multicursor
 Plugin 'terryma/vim-multiple-cursors'
-" Resent files
-Plugin 'yegappan/mru'
+" Autoformater
+Plugin 'Chiel92/vim-autoformat'
+" AutoComplete
+Plugin 'Valloric/YouCompleteMe'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -141,7 +143,8 @@ let g:vroom_use_dispatch = 1
 let g:vroom_use_zeus = 1
 
 map <leader>e :NERDTree<cr>
-map <leader>] :MRU<cr>
+map <leader>] :CtrlPMRU<cr>
+map <leader>= :Autoformat<cr>
 
 let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
@@ -198,12 +201,12 @@ set cuc cul
 " Tab completion
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components,vendor/cache/*
-""""""""""""""""""""""""""""""""""""""""
+
 " BACKUP / TMP FILES
-""""""""""""""""""""""""""""""""""""""""
 if isdirectory($HOME . '/.vim/backup') == 0
-	:silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
+  :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
 endif
+
 set backupdir-=.
 set backupdir+=.
 set backupdir-=~/
@@ -215,8 +218,9 @@ set backup
 " " If you have .vim-swap in the current directory, it'll use that.
 " " Otherwise it saves it to ~/.vim/swap, ~/tmp or .
 if isdirectory($HOME . '/.vim/swap') == 0
-	:silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
+  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
 endif
+
 set directory=./.vim-swap/
 set directory+=~/.vim/swap/
 set directory+=~/tmp/
