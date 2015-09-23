@@ -19,7 +19,7 @@ Plugin 'gmarik/vundle'
 " Rails :/
 Plugin 'tpope/vim-rails'
 " Snippets for our use :)
-" Plugin 'garbas/vim-snipmate'
+Plugin 'garbas/vim-snipmate'
 " Commenting and uncommenting stuff
 Plugin 'tomtom/tcomment_vim'
 " Beutiful solarized theme
@@ -61,7 +61,7 @@ Plugin 'Shougo/vimshell.vim'
 " Code search engine
 Plugin 'rking/ag.vim'
 " Block ending
-Plugin 'tpope/vim-endwise'
+Plugin 'rhysd/endwize.vim'
 " Easier html building 
 Plugin 'mattn/emmet-vim'
 " Ctags 
@@ -82,6 +82,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Chiel92/vim-autoformat'
 " AutoComplete
 Plugin 'Valloric/YouCompleteMe'
+" Stedier moving
+Plugin 'vim-scripts/camelcasemotion'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -101,14 +103,18 @@ augroup myfiletypes
 augroup END
 " ================
 
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
 
 " Syntax highlighting and theme
-
 syntax enable
+
+" Endwize
+" leT g:endwize_add_info_filetypes = ['ruby', 'c', 'cpp']
+inoremap <silent><CR> <CR><C-r>=endwize#crend()<CR>
 
 " Configs to make Molokai look great
 set background=dark
@@ -116,9 +122,6 @@ let g:molokai_original=1
 let g:rehash256=1
 set t_Co=256
 "colorscheme molokai
-
-" css formater
-autocmd filetype css setlocal equalprg=csstidy\ -\ --silent=true 
 
 " Show trailing whitespace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=red guibg=red
@@ -159,6 +162,14 @@ let g:vim_tags_gems_tags_command = "{CTAGS} -R {OPTIONS} `bundle show --paths` 2
 
 " Move line with Ctrl
 let g:move_key_modifier = 'C'
+
+" Split words by camelcase
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+sunmap w
+sunmap b
+sunmap e
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
