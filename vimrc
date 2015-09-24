@@ -24,8 +24,8 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'tomtom/tcomment_vim'
 " Beutiful solarized theme
 Plugin 'altercation/vim-colors-solarized'
-" Molokai theme
-Plugin 'tomasr/molokai'
+" Lucius theme
+Plugin 'jonathanfilip/vim-lucius'
 " Vim Ruby
 Plugin 'vim-ruby/vim-ruby'
 " Surround your code :)
@@ -84,6 +84,8 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/YouCompleteMe'
 " Stedier moving
 Plugin 'vim-scripts/camelcasemotion'
+" Relative number
+Plugin 'myusuf3/numbers.vim'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -116,12 +118,13 @@ syntax enable
 " leT g:endwize_add_info_filetypes = ['ruby', 'c', 'cpp']
 inoremap <silent><CR> <CR><C-r>=endwize#crend()<CR>
 
-" Configs to make Molokai look great
+" configs to make Molokai look great
 set background=dark
-let g:molokai_original=1
 let g:rehash256=1
 set t_Co=256
-"colorscheme molokai
+colorscheme lucius
+let g:lucius_contrast='high'
+let g:lucius_contrast_bg='high'
 
 " Show trailing whitespace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=red guibg=red
@@ -173,7 +176,7 @@ sunmap e
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$\|vendor\/cache$',
+      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$\|vendor\/cache$\|public\/assets$',
       \ 'file': '\.exe$\|\.so$\|\.dat$'
       \ }
 
@@ -214,7 +217,7 @@ set cuc cul
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components,vendor/cache/*
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components,vendor/cache/*,public/assets/**
 
 " BACKUP / TMP FILES
 if isdirectory($HOME . '/.vim/backup') == 0
@@ -261,3 +264,10 @@ set langmap=’йцукенгшщзхїфівапролджєячсмитьбю'
 
 " Ruby hash syntax conversion
 nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
+
+" Gvim humanizer
+set guioptions-=m " Removes actionbar
+set guioptions-=T " Removes top toolbar
+set guioptions-=r " Removes right hand scroll bar
+set go-=L " Removes left hand scroll bar
+set guifont=Monospace\ 11
