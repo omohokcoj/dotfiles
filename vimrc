@@ -101,15 +101,16 @@ augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
   " autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,eruby,yaml,markdown set ai sw=2 sts=2 et
+  autocmd FileType ruby,eruby,yaml,markdown,javascript set ai sw=2 sts=2 et
+  autocmd FileType javascript set ai sw=4 sts=4 et
 augroup END
 " ================
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
 " Syntax highlighting and theme
 syntax enable
@@ -259,8 +260,8 @@ if exists("+undofile")
   set undofile
 endif
 
-" Ukrainian langmap
-set langmap=’йцукенгшщзхїфівапролджєячсмитьбю'ЙЦУКЕHГШЩЗХЪФІВАПРОЛДЖЄЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+" Russian langmap
+" set langmap=йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;qwertyuiop[]asdfghjkl;'zxcvbnm,.QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>
 
 " Ruby hash syntax conversion
 nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
@@ -271,3 +272,7 @@ set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
 set guifont=Monospace\ 11
+
+
+set ttyfast
+set lazyredraw
