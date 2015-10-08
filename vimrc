@@ -101,7 +101,7 @@ augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
   " autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,eruby,yaml,markdown,javascript set ai sw=2 sts=2 et
+  autocmd FileType * set ai sw=2 sts=2 et
   autocmd FileType javascript set ai sw=4 sts=4 et
 augroup END
 " ================
@@ -161,6 +161,17 @@ let g:airline_powerline_fonts=1
 set laststatus=2
 
 let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_in_insert_mode = 0
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  let g:auto_save = 0
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  let g:auto_save = 1
+endfunction
+
 let g:vim_tags_auto_generate = 1
 let g:vim_tags_gems_tags_command = "{CTAGS} -R {OPTIONS} `bundle show --paths` 2>/dev/null"
 
