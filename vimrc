@@ -104,6 +104,8 @@ augroup myfiletypes
   autocmd FileType ruby,eruby,yaml,markdown,javascript set ai sw=2 sts=2 et
   autocmd FileType javascript set ai sw=4 sts=4 et
 augroup END
+
+autocmd BufNewFile,BufRead *.html.erb.deface   set syntax=eruby
 " ================
 
 " Return to last edit position when opening files
