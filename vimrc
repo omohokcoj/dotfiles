@@ -141,7 +141,7 @@ let g:lucius_contrast_bg='high'
 set nu
 
 " Searching
-set hlsearch
+" set hlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -199,8 +199,7 @@ let g:ctrlp_custom_ignore = {
       \ }
 
 " Sane ag command
-let g:agprg='ag --nocolor --nogroup --column --ignore tmp --ignore log --ignore *.log --ignore coverage'
-
+let g:agprg='ag --nocolor --nogroup --column'
 nnoremap D "dD
 vnoremap D "dD
 nnoremap d "dd
@@ -219,8 +218,17 @@ nnoremap s "ss
 vnoremap s "ss
 
 " easy-motion keys
-nmap . <Plug>(easymotion-s2)
-nmap , <Plug>(easymotion-t2)
+" nmap . <Plug>(easymotion-s2)
+nmap , <Plug>(easymotion-s2)
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
 " Gundo key
 nnoremap <F5> :GundoToggle<CR>
