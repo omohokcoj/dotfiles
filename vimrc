@@ -86,6 +86,10 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/camelcasemotion'
 " Relative number
 Plugin 'myusuf3/numbers.vim'
+" Tabulations
+Plugin 'godlygeek/tabular'
+" Painless NERDTree 
+Plugin 'jistr/vim-nerdtree-tabs'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -155,7 +159,7 @@ let g:vroom_map_keys = 0
 let g:vroom_use_dispatch = 1
 let g:vroom_use_zeus = 1
 
-map <leader>e :NERDTree<cr>
+map <leader>e :NERDTreeTabsToggle<cr>
 map <leader>] :CtrlPMRU<cr>
 map <leader>= :Autoformat<cr>
 
@@ -191,7 +195,7 @@ sunmap e
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$\|vendor\/cache$\|public\/assets$',
+      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$\|vendor\/cache$\|public\/assets$|public\/media$',
       \ 'file': '\.exe$\|\.so$\|\.dat$'
       \ }
 
@@ -216,8 +220,17 @@ nnoremap s "ss
 vnoremap s "ss
 
 " easy-motion keys
-nmap . <Plug>(easymotion-s2)
-nmap , <Plug>(easymotion-t2)
+" nmap . <Plug>(easymotion-s2)
+nmap , <Plug>(easymotion-s2)
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
 " Gundo key
 nnoremap <F5> :GundoToggle<CR>
@@ -232,7 +245,7 @@ set cuc cul
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components,vendor/cache/*,public/assets/**
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components,vendor/cache/*,public/assets/**,public/media/**
 
 " BACKUP / TMP FILES
 if isdirectory($HOME . '/.vim/backup') == 0
@@ -290,3 +303,9 @@ set guifont=Monospace\ 11
 
 set ttyfast
 set lazyredraw
+
+if has("autocmd")
+  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+endif
