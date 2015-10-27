@@ -102,6 +102,7 @@ augroup myfiletypes
   autocmd!
   " autoindent with two spaces, always expand tabs
   autocmd FileType * set ai sw=2 sts=2 et
+  autocmd FileType html set ai sw=2 sts=2 et
   autocmd FileType javascript set ai sw=4 sts=4 et
 augroup END
 
@@ -195,7 +196,7 @@ let g:ctrlp_custom_ignore = {
       \ }
 
 " Sane ag command
-let g:agprg='ag --nocolor --nogroup --column --ignore tmp --ignore log --ignore *.log --ignore coverage'
+let g:agprg='ag --nocolor --nogroup --column'
 
 nnoremap D "dD
 vnoremap D "dD
