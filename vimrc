@@ -142,7 +142,7 @@ let g:lucius_contrast_bg='high'
 set nu
 
 " Searching
-set hlsearch
+" set hlsearch
 set incsearch
 set ignorecase
 set smartcase
