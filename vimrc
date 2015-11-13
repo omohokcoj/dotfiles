@@ -90,6 +90,8 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'godlygeek/tabular'
 " Painless NERDTree 
 Plugin 'jistr/vim-nerdtree-tabs'
+" Local editor settings
+Plugin 'embear/vim-localvimrc'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -158,6 +160,11 @@ map <leader>d :bd<CR> " \d delete buffer
 let g:vroom_map_keys = 0
 let g:vroom_use_dispatch = 1
 let g:vroom_use_zeus = 1
+
+" Load local vimrc without confirmation
+let g:localvimrc_sandbox = 0
+let g:localvimrc_ask = 0
+
 
 map <leader>e :NERDTreeTabsToggle<cr>
 map <leader>] :CtrlPMRU<cr>
