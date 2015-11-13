@@ -194,12 +194,16 @@ sunmap e
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$\|vendor\/cache$\|public\/assets$|public\/media$',
-      \ 'file': '\.exe$\|\.so$\|\.dat$'
+      \ 'dir':  '\v[\/](doc|tmp|node_modules)',
+      \ 'file': '\v\.(exe|so|dll)$',
       \ }
+
+" ctrlp .gitignore
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Sane ag command
 let g:agprg='ag --nocolor --nogroup --column'
+
 nnoremap D "dD
 vnoremap D "dD
 nnoremap d "dd
@@ -243,7 +247,7 @@ set cuc cul
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,temp/**,log/**,*.log,bower_components,vendor/cache/*,public/assets/**,public/media/**
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn
 
 " BACKUP / TMP FILES
 if isdirectory($HOME . '/.vim/backup') == 0
