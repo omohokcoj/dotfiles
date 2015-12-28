@@ -40,24 +40,12 @@ Plugin 'othree/html5.vim'
 Plugin 'kchmck/vim-coffee-script'
 " Fuzzu finder for vim (CTRL+P)
 Plugin 'kien/ctrlp.vim'
-" Ruby Tests
-Plugin 'skalnik/vim-vroom'
 " Easy motion for easy motion
 Plugin 'Lokaltog/vim-easymotion'
-" Running tests in tmux session
-Plugin 'tpope/vim-dispatch'
-" Gist
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-" File renaming
-Plugin 'danro/rename.vim'
 " File explorer
 Plugin 'scrooloose/nerdtree'
 " You got it :)
 Plugin 'vim-scripts/vim-auto-save'
-" Run terminal in vim
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
 " Code search engine
 Plugin 'rking/ag.vim'
 " Block ending
@@ -92,6 +80,10 @@ Plugin 'godlygeek/tabular'
 Plugin 'jistr/vim-nerdtree-tabs'
 " Local editor settings
 Plugin 'embear/vim-localvimrc'
+" Repeater required by Easyclip
+Plugin 'tpope/vim-repeat'
+" Better clipboard
+Plugin 'svermeulen/vim-easyclip'
 
 set tags=./tags; " Set tags directory
 set autoindent " Auto indention should be on
@@ -152,19 +144,13 @@ set smartcase
 " Remove highlights with leader + enter
 nmap <Leader><CR> :nohlsearch<cr>
 
-" Buffer switching
-map <leader>p :bp<CR> " \p previous buffer
-map <leader>n :bn<CR> " \n next buffer
-map <leader>d :bd<CR> " \d delete buffer
-
-let g:vroom_map_keys = 0
-let g:vroom_use_dispatch = 1
-let g:vroom_use_zeus = 1
+" rotate yanks (easyclip)
+nmap [y <plug>EasyClipRotateYanksForward
+nmap ]y <plug>EasyClipRotateYanksBackward
 
 " Load local vimrc without confirmation
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
-
 
 map <leader>e :NERDTreeTabsToggle<cr>
 map <leader>] :CtrlPMRU<cr>
@@ -211,23 +197,6 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 " Sane ag command
 let g:agprg='ag --nocolor --nogroup --column'
-
-nnoremap D "dD
-vnoremap D "dD
-nnoremap d "dd
-vnoremap d "dd
-nnoremap X "xX
-vnoremap X "xX
-nnoremap x "xx
-vnoremap x "xx
-nnoremap C "cC
-vnoremap C "cC
-nnoremap c "cc
-vnoremap c "cc
-nnoremap S "sS
-vnoremap S "sS
-nnoremap s "ss
-vnoremap s "ss
 
 " easy-motion keys
 " nmap . <Plug>(easymotion-s2)
