@@ -86,6 +86,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'svermeulen/vim-easyclip'
 
 set tags=./tags; " Set tags directory
+let g:ycm_collect_identifiers_from_tags_files = 1
+
 set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
 filetype plugin indent on
