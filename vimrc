@@ -174,7 +174,7 @@ function! Multiple_cursors_after()
   let g:auto_save = 1
 endfunction
 
-let g:vim_tags_auto_generate = 1
+" let g:vim_tags_auto_generate = 1
 let g:vim_tags_gems_tags_command = "{CTAGS} -R {OPTIONS} `bundle show --paths` 2>/dev/null"
 
 " Move line with Ctrl
@@ -268,9 +268,6 @@ if exists("+undofile")
   set undofile
 endif
 
-" Russian langmap
-" set langmap=йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;qwertyuiop[]asdfghjkl;'zxcvbnm,.QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>
-
 " Ruby hash syntax conversion
 nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
 
@@ -281,7 +278,6 @@ set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
 set guifont=Monospace\ 11
 
-
 set ttyfast
 set lazyredraw
 
@@ -290,3 +286,22 @@ if has("autocmd")
   au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
   au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
 endif
+
+if has('nvim')
+   " Remember things between sessions
+   "
+   " '20  - remember marks for 20 previous files
+   " <50 - save 50 lines for each register
+   " :20  - remember 20 items in command-line history
+   " %    - remember the buffer list (if vim started without a file arg)
+   set shada='20,<50,:20,%,n~/.nvim/_nviminfo
+ else
+   " Remember things between sessions
+   "
+   " '20  - remember marks for 20 previous files
+   " \"50 - save 50 lines for each register
+   " :20  - remember 20 items in command-line history
+   " %    - remember the buffer list (if vim started without a file arg)
+   " n    - set name of viminfo file
+   set viminfo='20,\"50,:20,%,n~/.vim/_viminfo
+ endif
