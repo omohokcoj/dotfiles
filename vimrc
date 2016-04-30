@@ -5,25 +5,18 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
-" Dependencies of snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'honza/vim-snippets'
-
 " Good looking bottom :)
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+" Themes
+Plugin 'vim-airline/vim-airline-themes'
 " Git tools
 Plugin 'tpope/vim-fugitive'
 " Dependency managment
 Plugin 'gmarik/vundle'
 " Rails :/
 Plugin 'tpope/vim-rails'
-" Snippets for our use :)
-Plugin 'garbas/vim-snipmate'
 " Commenting and uncommenting stuff
 Plugin 'tomtom/tcomment_vim'
-" Beutiful solarized theme
-Plugin 'altercation/vim-colors-solarized'
 " Lucius theme
 Plugin 'jonathanfilip/vim-lucius'
 " Vim Ruby
@@ -69,7 +62,7 @@ Plugin 'terryma/vim-multiple-cursors'
 " Autoformater
 Plugin 'Chiel92/vim-autoformat'
 " AutoComplete
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'Shougo/neocomplete.vim'
 " Stedier moving
 Plugin 'vim-scripts/camelcasemotion'
 " Relative number
@@ -87,6 +80,7 @@ Plugin 'svermeulen/vim-easyclip'
 
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:neocomplete#enable_at_startup = 1
 
 set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
@@ -281,27 +275,22 @@ set guifont=Monospace\ 11
 set ttyfast
 set lazyredraw
 
+" Relate to mode cursors in console vim
 if has("autocmd")
   au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
   au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
   au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
 endif
 
+" Neovim fix
 if has('nvim')
-   " Remember things between sessions
-   "
-   " '20  - remember marks for 20 previous files
-   " <50 - save 50 lines for each register
-   " :20  - remember 20 items in command-line history
-   " %    - remember the buffer list (if vim started without a file arg)
-   set shada='20,<50,:20,%,n~/.nvim/_nviminfo
- else
-   " Remember things between sessions
-   "
-   " '20  - remember marks for 20 previous files
-   " \"50 - save 50 lines for each register
-   " :20  - remember 20 items in command-line history
-   " %    - remember the buffer list (if vim started without a file arg)
-   " n    - set name of viminfo file
-   set viminfo='20,\"50,:20,%,n~/.vim/_viminfo
- endif
+  set shada='20,<50,:20,%,n~/.nvim/_nviminfo
+else
+  set viminfo='20,\"50,:20,%,n~/.vim/_viminfo
+endif
+
+" Disable sound
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
