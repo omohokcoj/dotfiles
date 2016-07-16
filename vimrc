@@ -77,6 +77,8 @@ Plugin 'embear/vim-localvimrc'
 Plugin 'tpope/vim-repeat'
 " Better clipboard
 Plugin 'svermeulen/vim-easyclip'
+" ES6
+Plugin 'isRuslan/vim-es6'
 
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -192,7 +194,7 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Sane ag command
-let g:agprg='ag --nocolor --nogroup --column'
+let g:ag_prg='ag --nocolor --nogroup --column'
 
 " easy-motion keys
 " nmap . <Plug>(easymotion-s2)
@@ -270,23 +272,13 @@ set guioptions-=m " Removes actionbar
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
-set guifont=Monospace\ 11
-
 set ttyfast
 set lazyredraw
 
-" Relate to mode cursors in console vim
-if has("autocmd")
-  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-endif
-
-" Neovim fix
-if has('nvim')
-  set shada='20,<50,:20,%,n~/.nvim/_nviminfo
+if has("gui_macvim")
+  set guifont=Roboto\ Mono\ for\ Powerline:h15
 else
-  set viminfo='20,\"50,:20,%,n~/.vim/_viminfo
+  set guifont=Monospace\:h22
 endif
 
 " Disable sound
