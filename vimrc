@@ -79,6 +79,10 @@ Plugin 'tpope/vim-repeat'
 Plugin 'svermeulen/vim-easyclip'
 " ES6
 Plugin 'isRuslan/vim-es6'
+" Elixir syntax highlight
+Plugin 'elixir-lang/vim-elixir'
+" Ruby doc
+Plugin 'lucapette/vim-ruby-doc'
 
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -86,11 +90,9 @@ let g:neocomplete#enable_at_startup = 1
 
 set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
-filetype plugin indent on
 
-" Ruby stuff: Thanks Ben :)
-" ================
 syntax on                 " Enable syntax highlighting
+syntax enable             " Syntax highlighting and theme
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
 augroup myfiletypes
@@ -98,12 +100,9 @@ augroup myfiletypes
   autocmd!
   " autoindent with two spaces, always expand tabs
   autocmd FileType * set ai sw=2 sts=2 et
-  autocmd FileType html set ai sw=2 sts=2 et
-  autocmd FileType javascript set ai sw=4 sts=4 et
 augroup END
 
 autocmd BufNewFile,BufRead *.html.erb.deface   set syntax=eruby
-" ================
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
@@ -111,14 +110,10 @@ autocmd BufReadPost *
       \   exe "normal! g`\"" |
       \ endif
 
-" Syntax highlighting and theme
-syntax enable
-
 " Endwize
-" leT g:endwize_add_info_filetypes = ['ruby', 'c', 'cpp']
 inoremap <silent><CR> <CR><C-r>=endwize#crend()<CR>
 
-" configs to make Molokai look great
+" configs to make theme look great
 set background=dark
 let g:rehash256=1
 set t_Co=256
@@ -138,9 +133,6 @@ set nu
 set incsearch
 set ignorecase
 set smartcase
-
-" Remove highlights with leader + enter
-nmap <Leader><CR> :nohlsearch<cr>
 
 " rotate yanks (easyclip)
 nmap [y <plug>EasyClipRotateYanksForward
@@ -195,6 +187,8 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 " Sane ag command
 let g:ag_prg='ag --nocolor --nogroup --column'
+" Ruby Doc command
+let g:ruby_doc_command='open'
 
 " easy-motion keys
 " nmap . <Plug>(easymotion-s2)
@@ -264,9 +258,6 @@ if exists("+undofile")
   set undofile
 endif
 
-" Ruby hash syntax conversion
-nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
-
 " Gvim humanizer
 set guioptions-=m " Removes actionbar
 set guioptions-=T " Removes top toolbar
@@ -286,3 +277,9 @@ set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
+
+" Custom commands
+" Ruby hash syntax conversion
+nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
+" Copy filename to clipboard
+nmap cp :let @* = expand("%:p")<cr>:file<cr>
