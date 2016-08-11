@@ -281,5 +281,24 @@ endif
 " Custom commands
 " Ruby hash syntax conversion
 nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
-" Copy filename to clipboard
-nmap cp :let @* = expand("%:p")<cr>:file<cr>
+
+function CopyPath()
+    let @+=expand('%:p')
+endfunction
+
+function CopyRelativePath()
+    let @*=expand('%')
+endfunction
+
+function CopyFileName()
+    let @*=expand('%:t')
+endfunction
+
+function CopyDirectory()
+    let @*=expand("%:p:h")
+endfunction
+
+command! -nargs=0 CopyPath         call CopyPath()
+command! -nargs=0 CopyFileName     call CopyFileName()
+command! -nargs=0 CopyRelativePath call CopyRelativePath()
+command! -nargs=0 CopyDirectory    call CopyDirectory()
