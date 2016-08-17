@@ -83,6 +83,10 @@ Plugin 'isRuslan/vim-es6'
 Plugin 'elixir-lang/vim-elixir'
 " Ruby doc
 Plugin 'lucapette/vim-ruby-doc'
+" Hackers scratchpad
+Plugin 'metakirby5/codi.vim'
+" Google search
+Plugin 'szw/vim-g'
 
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
