@@ -19,6 +19,8 @@ Plugin 'tpope/vim-rails'
 Plugin 'tomtom/tcomment_vim'
 " Lucius theme
 Plugin 'jonathanfilip/vim-lucius'
+" Tomorrow theme
+Plugin 'chriskempson/vim-tomorrow-theme'
 " Vim Ruby
 Plugin 'vim-ruby/vim-ruby'
 " Surround your code :)
@@ -119,14 +121,6 @@ autocmd BufReadPost *
 " Endwize
 inoremap <silent><CR> <CR><C-r>=endwize#crend()<CR>
 
-" configs to make theme look great
-set background=dark
-let g:rehash256=1
-set t_Co=256
-colorscheme lucius
-let g:lucius_contrast='high'
-let g:lucius_contrast_bg='high'
-
 " Show trailing whitespace and spaces before a tab:
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
@@ -152,7 +146,6 @@ map <leader>e :NERDTreeTabsToggle<cr>
 map <leader>] :CtrlPMRU<cr>
 map <leader>= :Autoformat<cr>
 
-let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
 set laststatus=2
 
@@ -273,8 +266,11 @@ set ttyfast
 set lazyredraw
 
 if has("gui_macvim")
+  colorscheme lucius
+  let g:airline_theme='luna'
   set guifont=Roboto\ Mono\ for\ Powerline:h15
 else
+  colorscheme tomorrow-night-bright
   set guifont=Monospace\:h22
 endif
 
