@@ -87,6 +87,8 @@ Plugin 'lucapette/vim-ruby-doc'
 Plugin 'metakirby5/codi.vim'
 " Google search
 Plugin 'szw/vim-g'
+" Copy path
+Plugin 'omohokcoj/copypath.vim'
 
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -283,26 +285,6 @@ if has('autocmd')
 endif
 
 " Custom commands
+"
 " Ruby hash syntax conversion
 nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
-
-function CopyPath()
-    let @+=expand('%:p')
-endfunction
-
-function CopyRelativePath()
-    let @*=expand('%')
-endfunction
-
-function CopyFileName()
-    let @*=expand('%:t')
-endfunction
-
-function CopyDirectory()
-    let @*=expand("%:p:h")
-endfunction
-
-command! -nargs=0 CopyPath         call CopyPath()
-command! -nargs=0 CopyFileName     call CopyFileName()
-command! -nargs=0 CopyRelativePath call CopyRelativePath()
-command! -nargs=0 CopyDirectory    call CopyDirectory()
