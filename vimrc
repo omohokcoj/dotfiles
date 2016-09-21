@@ -15,6 +15,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'gmarik/vundle'
 " Rails :/
 Plugin 'tpope/vim-rails'
+" Ruby tests
+Plugin 'skalnik/vim-vroom'
 " Commenting and uncommenting stuff
 Plugin 'tomtom/tcomment_vim'
 " Lucius theme
@@ -27,7 +29,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-surround'
 " Tabs impletions
 Plugin 'ervandew/supertab'
-" Slim syntax 
+" Slim syntax
 Plugin 'slim-template/vim-slim'
 " HTML
 Plugin 'othree/html5.vim'
@@ -45,9 +47,9 @@ Plugin 'vim-scripts/vim-auto-save'
 Plugin 'rking/ag.vim'
 " Block ending
 Plugin 'rhysd/endwize.vim'
-" Easier html building 
+" Easier html building
 Plugin 'mattn/emmet-vim'
-" Ctags 
+" Ctags
 Plugin 'szw/vim-tags'
 " Line movings
 Plugin 'matze/vim-move'
@@ -71,7 +73,7 @@ Plugin 'vim-scripts/camelcasemotion'
 Plugin 'myusuf3/numbers.vim'
 " Tabulations
 Plugin 'godlygeek/tabular'
-" Painless NERDTree 
+" Painless NERDTree
 Plugin 'jistr/vim-nerdtree-tabs'
 " Local editor settings
 Plugin 'embear/vim-localvimrc'
@@ -91,6 +93,8 @@ Plugin 'metakirby5/codi.vim'
 Plugin 'szw/vim-g'
 " Copy path
 Plugin 'omohokcoj/copypath.vim'
+" Trailing whitespace highlight
+Plugin 'bronson/vim-trailing-whitespace'
 
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -120,10 +124,6 @@ autocmd BufReadPost *
 
 " Endwize
 inoremap <silent><CR> <CR><C-r>=endwize#crend()<CR>
-
-" Show trailing whitespace and spaces before a tab:
-:highlight ExtraWhitespace ctermbg=red guibg=red
-:autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
 
 " Lovely linenumbers
 set nu
