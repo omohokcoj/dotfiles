@@ -54,7 +54,7 @@ Plugin 'szw/vim-tags'
 " Line movings
 Plugin 'matze/vim-move'
 " Javascript
-Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
 " Git diff
 Plugin 'airblade/vim-gitgutter'
 " Awesome syntax checker
