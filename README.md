@@ -1,7 +1,9 @@
-# VIMRC
+# dotfiles
 
-## Installation
-Clone this repo anywhere you want and run `install.sh`. For example:
+## Vim
+
+### Installation
+Clone this repo and run `install.sh`:
 ```bash
 git clone https://github.com/omohokcoj/vim-u-want.git ~/vimrc
 cd ~/vimrc
@@ -9,16 +11,29 @@ chmod +x ./install.sh
 ./install.sh
 ```
 
-## Additional installations
-* GVim
-```bash
-sudo apt-get install gnome-vim
-```
+### Additional installations
 * [silver_searcher](https://github.com/ggreer/the_silver_searcher)
 ```bash
-sudo apt-get install silversearcher-ag 
+brew install the_silver_searcher
 ```
 * Ctag
 ```bash
-sudo apt-get install exuberant-ctags
+brew install ctags
+```
+
+## Tmux
+
+### Installation
+```bash
+mv tmux.conf ~/.tmux.conf
+```
+
+### Additional installations
+* [tmux-powerline](https://github.com/erikw/tmux-powerline)
+```bash
+git clone https://github.com/erikw/tmux-powerline.git ~/.tmux/tmux-powerline
+```
+* reattach-to-user-namespace
+```bash
+brew install reattach-to-user-namespace --HEAD
 ```

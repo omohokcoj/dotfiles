@@ -95,6 +95,8 @@ Plugin 'szw/vim-g'
 Plugin 'omohokcoj/copypath.vim'
 " Trailing whitespace highlight
 Plugin 'bronson/vim-trailing-whitespace'
+" Dark theme for terminal
+Plugin 'juanpabloaj/vim-pixelmuerto'
 
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -270,7 +272,7 @@ if has("gui_macvim")
   let g:airline_theme='luna'
   set guifont=Roboto\ Mono\ for\ Powerline:h15
 else
-  colorscheme tomorrow-night-bright
+  colorscheme pixelmuerto
   set guifont=Monospace\:h22
 endif
 
