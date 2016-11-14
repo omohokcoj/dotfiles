@@ -21,8 +21,6 @@ Plugin 'skalnik/vim-vroom'
 Plugin 'tomtom/tcomment_vim'
 " Lucius theme
 Plugin 'jonathanfilip/vim-lucius'
-" Tomorrow theme
-Plugin 'chriskempson/vim-tomorrow-theme'
 " Vim Ruby
 Plugin 'vim-ruby/vim-ruby'
 " Surround your code :)
@@ -52,7 +50,7 @@ Plugin 'mattn/emmet-vim'
 " Ctags
 Plugin 'szw/vim-tags'
 " Line movings
-Plugin 'matze/vim-move'
+Plugin 't9md/vim-textmanip'
 " Javascript
 Plugin 'jelera/vim-javascript-syntax'
 " Git diff
@@ -97,6 +95,8 @@ Plugin 'omohokcoj/copypath.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 " Dark theme for terminal
 Plugin 'juanpabloaj/vim-pixelmuerto'
+" Tmux integration
+Plugin 'christoomey/vim-tmux-navigator'
 
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -166,8 +166,11 @@ endfunction
 " let g:vim_tags_auto_generate = 1
 let g:vim_tags_gems_tags_command = "{CTAGS} -R {OPTIONS} `bundle show --paths` 2>/dev/null"
 
-" Move line with Ctrl
-let g:move_key_modifier = 'C'
+" Move line with Alt
+xmap <C-j> <Plug>(textmanip-move-down)
+xmap <C-k> <Plug>(textmanip-move-up)
+xmap <C-h> <Plug>(textmanip-move-left)
+xmap <C-l> <Plug>(textmanip-move-right)
 
 " Split words by camelcase
 map <silent> w <Plug>CamelCaseMotion_w
