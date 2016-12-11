@@ -39,8 +39,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
 " File explorer
 Plugin 'scrooloose/nerdtree'
-" You got it :)
-Plugin 'vim-scripts/vim-auto-save'
+" Automatically save changes to disk
+Plugin '907th/vim-auto-save'
 " Code search engine
 Plugin 'rking/ag.vim'
 " Block ending
@@ -159,8 +159,7 @@ set laststatus=2
 
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_silent = 1
-let g:auto_save_in_insert_mode = 0
-let g:auto_save_no_updatetime = 1
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
   let g:auto_save = 0
