@@ -67,8 +67,8 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'Shougo/neocomplete.vim'
 " Stedier moving
 Plugin 'vim-scripts/camelcasemotion'
-" Relative number
-Plugin 'myusuf3/numbers.vim'
+" " Relative number
+" Plugin 'myusuf3/numbers.vim'
 " Tabulations
 Plugin 'godlygeek/tabular'
 " Painless NERDTree
@@ -98,6 +98,12 @@ Plugin 'juanpabloaj/vim-pixelmuerto'
 " Tmux integration
 Plugin 'christoomey/vim-tmux-navigator'
 
+colorscheme lucius
+let g:airline_theme='lucius'
+let g:lucius_style = 'dark'
+let g:lucius_no_term_bg = 1
+
+set guifont=Roboto\ Mono\ for\ Powerline:h15
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:neocomplete#enable_at_startup = 1
@@ -152,7 +158,9 @@ let g:airline_powerline_fonts=1
 set laststatus=2
 
 let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
+let g:auto_save_no_updatetime = 1
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
   let g:auto_save = 0
@@ -216,7 +224,12 @@ cno jj <c-c>
 vno v <esc>
 
 " Highlight active column
-set cuc cul
+" set cuc cul
+
+" Speed
+let loaded_matchparen=1
+let html_no_rendering=1
+set noshowmatch
 
 " Tab completion
 set wildmode=list:longest,list:full
@@ -270,22 +283,8 @@ set go-=L " Removes left hand scroll bar
 set ttyfast
 set lazyredraw
 
-if has("gui_macvim")
-  colorscheme lucius
-  let g:airline_theme='luna'
-  set guifont=Roboto\ Mono\ for\ Powerline:h15
-else
-  colorscheme pixelmuerto
-  set guifont=Monospace\:h22
-endif
-
 " Disable sound
 set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
-
-" Custom commands
-"
-" Ruby hash syntax conversion
-nnoremap <F12> :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<return>
