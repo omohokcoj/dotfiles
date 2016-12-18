@@ -25,8 +25,6 @@ Plugin 'jonathanfilip/vim-lucius'
 Plugin 'vim-ruby/vim-ruby'
 " Surround your code :)
 Plugin 'tpope/vim-surround'
-" Tabs impletions
-Plugin 'ervandew/supertab'
 " Slim syntax
 Plugin 'slim-template/vim-slim'
 " HTML
@@ -47,8 +45,6 @@ Plugin 'rking/ag.vim'
 Plugin 'rhysd/endwize.vim'
 " Easier html building
 Plugin 'mattn/emmet-vim'
-" Ctags
-Plugin 'szw/vim-tags'
 " Line movings
 Plugin 't9md/vim-textmanip'
 " Javascript
@@ -67,12 +63,8 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'Shougo/neocomplete.vim'
 " Stedier moving
 Plugin 'vim-scripts/camelcasemotion'
-" " Relative number
-" Plugin 'myusuf3/numbers.vim'
 " Tabulations
 Plugin 'godlygeek/tabular'
-" Painless NERDTree
-Plugin 'jistr/vim-nerdtree-tabs'
 " Local editor settings
 Plugin 'embear/vim-localvimrc'
 " Repeater required by Easyclip
@@ -83,18 +75,10 @@ Plugin 'svermeulen/vim-easyclip'
 Plugin 'isRuslan/vim-es6'
 " Elixir syntax highlight
 Plugin 'elixir-lang/vim-elixir'
-" Ruby doc
-Plugin 'lucapette/vim-ruby-doc'
-" Hackers scratchpad
-Plugin 'metakirby5/codi.vim'
-" Google search
-Plugin 'szw/vim-g'
 " Copy path
 Plugin 'omohokcoj/copypath.vim'
 " Trailing whitespace highlight
 Plugin 'bronson/vim-trailing-whitespace'
-" Dark theme for terminal
-Plugin 'juanpabloaj/vim-pixelmuerto'
 " Tmux integration
 Plugin 'christoomey/vim-tmux-navigator'
 
@@ -150,7 +134,7 @@ nmap ]y <plug>EasyClipRotateYanksBackward
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
 
-map <leader>e :NERDTreeTabsToggle<cr>
+map <leader>e :NERDTree<cr>
 map <leader>] :CtrlPMRU<cr>
 map <leader>= :Autoformat<cr>
 
@@ -170,10 +154,7 @@ function! Multiple_cursors_after()
   let g:auto_save = 1
 endfunction
 
-" let g:vim_tags_auto_generate = 1
-let g:vim_tags_gems_tags_command = "{CTAGS} -R {OPTIONS} `bundle show --paths` 2>/dev/null"
-
-" Move line with Alt
+" Move line with Ctrl
 xmap <C-j> <Plug>(textmanip-move-down)
 xmap <C-k> <Plug>(textmanip-move-up)
 xmap <C-h> <Plug>(textmanip-move-left)
