@@ -2,6 +2,7 @@ source ~/.zplug/init.zsh
 
 zplug "plugins/extract", from:oh-my-zsh
 zplug "plugins/rake-fast", from:oh-my-zsh
+zplug "plugins/heroku", from:oh-my-zsh
 
 zplug load
 
@@ -15,7 +16,7 @@ export PATH=$PATH:$GOROOT/bin
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh # autojump
 # [[ -s "$HOME/.nvm/nvm.sh" ]] && . "$HOME/.nvm/nvm.sh"  # This loads nvm
 
-parse_git_branch() {
+_parse_git_branch() {
   local branch
   branch=$(git branch 2> /dev/null | grep '\*' | cut -c 3- | sed 's/[()]//g')
   if [[ "$branch" ]]; then
@@ -29,7 +30,7 @@ parse_git_branch() {
 }
 
 setopt PROMPT_SUBST
-PROMPT='%n%f@%m%f %F{green}%1~%f%F{yellow}$(parse_git_branch)%f %# '
+PROMPT='%n%f@%m%f %F{green}%1~%f%F{yellow}$(_parse_git_branch)%f %# '
 
 # vi mode
 bindkey -v
