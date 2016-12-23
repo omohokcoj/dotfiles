@@ -33,3 +33,6 @@ setopt HIST_REDUCE_BLANKS
 
 # vi mode
 bindkey -v
+
+# excape squale brackets in rake task
+alias rake='noglob rake'

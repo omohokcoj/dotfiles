@@ -81,6 +81,8 @@ Plugin 'omohokcoj/copypath.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 " Tmux integration
 Plugin 'christoomey/vim-tmux-navigator'
+" Send command to tmux
+Plugin 'brauner/vimtux'
 
 colorscheme lucius
 let g:airline_theme='lucius'
@@ -91,6 +93,8 @@ set guifont=Roboto\ Mono\ for\ Powerline:h15
 set tags=./tags; " Set tags directory
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:neocomplete#enable_at_startup = 1
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
@@ -129,6 +133,10 @@ set smartcase
 " rotate yanks (easyclip)
 nmap [y <plug>EasyClipRotateYanksForward
 nmap ]y <plug>EasyClipRotateYanksBackward
+
+" send to tmux panel
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 
 " Load local vimrc without confirmation
 let g:localvimrc_sandbox = 0
