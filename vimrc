@@ -47,8 +47,6 @@ Plugin 'rhysd/endwize.vim'
 Plugin 'mattn/emmet-vim'
 " Line movings
 Plugin 't9md/vim-textmanip'
-" Javascript
-Plugin 'jelera/vim-javascript-syntax'
 " Git diff
 Plugin 'airblade/vim-gitgutter'
 " Awesome syntax checker

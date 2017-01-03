@@ -31,6 +31,14 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
+export GOPATH=$HOME/Documents/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+# tmux detected broken kqueue
+export EVENT_NOKQUEUE=1
+
 # vi mode
 bindkey -v
 
