@@ -140,9 +140,13 @@ nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
 
-map <leader>e :NERDTree<cr>
+map <leader>e :NERDTreeToggle<cr>
 map <leader>] :CtrlPMRU<cr>
 map <leader>= :Autoformat<cr>
+
+" disable NERDTree default mapings, needs to make vim-tmux work
+let g:NERDTreeMapJumpNextSibling = ''
+let g:NERDTreeMapJumpPrevSibling = ''
 
 let g:airline_powerline_fonts=1
 set laststatus=2
