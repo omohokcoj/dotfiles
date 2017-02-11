@@ -5,6 +5,7 @@ zplug "plugins/rake-fast", from:oh-my-zsh
 zplug "plugins/heroku", from:oh-my-zsh
 zplug "plugins/autojump", from:oh-my-zsh
 zplug "plugins/rvm", from:oh-my-zsh
+zplug "plugins/colorize", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
 zplug "lib/git", from:oh-my-zsh
 zplug "lib/completion", from:oh-my-zsh
@@ -18,6 +19,7 @@ export GOPATH=$HOME/Documents/golang
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:/usr/local/sbin
 
 # tmux detected broken kqueue
 export EVENT_NOKQUEUE=1
