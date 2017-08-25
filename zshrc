@@ -9,6 +9,7 @@ zplug "plugins/colorize", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
 zplug "lib/git", from:oh-my-zsh
 zplug "lib/completion", from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions"
 
 zplug load
 
