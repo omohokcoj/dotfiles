@@ -6,7 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " Dependency managment
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 " Good looking bottom :)
 Plugin 'vim-airline/vim-airline'
 " Themes
