@@ -47,6 +47,8 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'christoomey/vim-tmux-navigator'
 " Send command to tmux
 Plugin 'brauner/vimtux'
+" Restore cursor position
+Plugin 'farmergreg/vim-lastplace'
 
 " Syntax highlight
 Plugin 'vim-ruby/vim-ruby'
@@ -61,12 +63,7 @@ let g:airline_theme='lucius'
 let g:lucius_style = 'dark'
 let g:lucius_no_term_bg = 1
 
-set guifont=Roboto\ Mono\ for\ Powerline:h15
-set tags=./tags; " Set tags directory
 let g:neocomplete#enable_at_startup = 1
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 let g:alchemist#elixir_erlang_src = $HOME."/Documents"
 
@@ -84,12 +81,6 @@ augroup myfiletypes
   autocmd FileType * set ai sw=2 sts=2 et
 augroup END
 
-" Return to last edit position when opening files
-autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
-
 " Lovely linenumbers
 set nu
 
@@ -97,6 +88,13 @@ set nu
 set incsearch
 set ignorecase
 set smartcase
+
+" To display the status line always
+set laststatus=2
+
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " send to tmux panel
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
@@ -106,11 +104,19 @@ map <leader>e :Explore<cr>
 map <leader>] :CtrlPMRU<cr>
 
 let g:airline_powerline_fonts=1
-set laststatus=2
 
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_silent = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
+
+" Sane Ignore For ctrlp
+let g:ctrlp_custom_ignore = { 'dir':  '\v[\/](doc|tmp|node_modules)' }
+
+" ctrlp .gitignore
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" Sane ag command
+let g:ag_prg='ag --nocolor --nogroup --column'
 
 " Move line with Ctrl
 xmap <C-j> <Plug>(textmanip-move-down)
@@ -126,15 +132,6 @@ sunmap w
 sunmap b
 sunmap e
 
-" Sane Ignore For ctrlp
-let g:ctrlp_custom_ignore = { 'dir':  '\v[\/](doc|tmp|node_modules)' }
-
-" ctrlp .gitignore
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" Sane ag command
-let g:ag_prg='ag --nocolor --nogroup --column'
-
 " easy-motion keys
 " nmap . <Plug>(easymotion-s2)
 nmap , <Plug>(easymotion-s2)
@@ -146,6 +143,8 @@ omap / <Plug>(easymotion-tn)
 " different highlight method and have some other features)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
+
+set tags=./tags; " Set tags directory
 
 " BACKUP / TMP FILES
 set backupdir-=.
@@ -179,6 +178,7 @@ set guioptions-=m " Removes actionbar
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
+set guifont=Roboto\ Mono\ for\ Powerline:h15
 
 " Disable sound
 set noerrorbells visualbell t_vb=
