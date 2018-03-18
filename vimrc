@@ -54,9 +54,11 @@ Plugin 'farmergreg/vim-lastplace'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'slim-template/vim-slim'
 Plugin 'othree/html5.vim'
-Plugin 'isRuslan/vim-es6'
+Plugin 'pangloss/vim-javascript'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
+Plugin 'ElmCast/elm-vim'
+Plugin 'posva/vim-vue'
 
 colorscheme lucius
 let g:airline_theme='lucius'
@@ -103,6 +105,9 @@ nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 map <leader>e :Explore<cr>
 map <leader>] :CtrlPMRU<cr>
 
+let g:vue_disable_pre_processors = 1
+autocmd FileType vue syntax sync fromstart
+
 let g:airline_powerline_fonts=1
 
 let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -117,6 +122,8 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 
 " Sane ag command
 let g:ag_prg='ag --nocolor --nogroup --column'
+" Do not show mapping message
+let g:ag_mapping_message = 0
 
 " Move line with Ctrl
 xmap <C-j> <Plug>(textmanip-move-down)
@@ -190,15 +197,5 @@ endif
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-
+" Open nertw on vim load
 autocmd VimEnter * if !argc() | Explore | endif
