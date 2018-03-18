@@ -19,7 +19,8 @@ PROMPT='%n%f@%m%f %F{green}%1~%f%F{yellow}$(git_current_branch_short)%f %# '
 bindkey -v
 
 # excape squale brackets in rake task
-alias rake='noglob rake'
+alias rake='noglob spring rake'
+alias rspec='spring rspec'
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
