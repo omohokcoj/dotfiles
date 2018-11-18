@@ -69,6 +69,8 @@ let g:neocomplete#enable_at_startup = 1
 
 let g:alchemist#elixir_erlang_src = $HOME."/Documents"
 
+autocmd BufWritePost * GitGutter
+
 set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
 
