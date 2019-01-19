@@ -2,73 +2,99 @@ set autoread
 set nocompatible " be iMproved
 " For vundle
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
 
-" Dependency managment
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin()
+
 " Good looking bottom :)
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Themes
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 " Lucius theme
-Plugin 'jonathanfilip/vim-lucius'
+Plug 'jonathanfilip/vim-lucius'
 " Commenting and uncommenting stuff
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 " Fuzzu finder for vim (CTRL+P)
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " Easy motion for easy motion
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 " Automatically save changes to disk
-Plugin '907th/vim-auto-save'
+Plug '907th/vim-auto-save'
 " Silver searcher
-Plugin 'rking/ag.vim'
+Plug 'rking/ag.vim'
 " Line movings
-Plugin 't9md/vim-textmanip'
+Plug 't9md/vim-textmanip'
 " Git diff
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " History
-Plugin 'sjl/gundo.vim'
-" Autocomplete
-Plugin 'Shougo/neocomplete.vim'
+Plug 'sjl/gundo.vim'
 " Stedier moving
-Plugin 'vim-scripts/camelcasemotion'
+Plug 'vim-scripts/camelcasemotion'
 " Tabulations
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 " Repeater required by Easyclip
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 " Better clipboard
-Plugin 'svermeulen/vim-easyclip'
+Plug 'svermeulen/vim-easyclip'
 " Copy path
-Plugin 'omohokcoj/copypath.vim'
+Plug 'omohokcoj/copypath.vim'
 " Trailing whitespace highlight
-Plugin 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 " Tmux integration
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 " Send command to tmux
-Plugin 'brauner/vimtux'
+Plug 'brauner/vimtux'
 " Restore cursor position
-Plugin 'farmergreg/vim-lastplace'
+Plug 'vim-scripts/lastpos.vim'
+" Netrw improved
+Plug 'tpope/vim-vinegar'
+" Languageserver client
+Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
+" Fuzzy finder (Languageserver requirement)
+Plug 'junegunn/fzf'
+
+" Autocomplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 " Syntax highlight
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'slim-template/vim-slim'
-Plugin 'othree/html5.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'ElmCast/elm-vim'
-Plugin 'posva/vim-vue'
+Plug 'slim-template/vim-slim'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'ElmCast/elm-vim'
+Plug 'posva/vim-vue'
+
+call plug#end()
 
 colorscheme lucius
 let g:airline_theme='lucius'
 let g:lucius_style = 'dark'
 let g:lucius_no_term_bg = 1
 
-let g:neocomplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
+
+let g:LanguageClient_serverCommands = {
+      \ 'ruby': ['solargraph', 'stdio'],
+      \ }
+
+" LanguageClient bindings
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
 
 let g:alchemist#elixir_erlang_src = $HOME."/Documents"
 
+set completeopt=menu,menuone,preview,noselect,noinsert
 autocmd BufWritePost * GitGutter
 
 set autoindent " Auto indention should be on
@@ -83,7 +109,7 @@ augroup myfiletypes
   autocmd!
   " autoindent with two spaces, always expand tabs
   autocmd FileType * set ai sw=2 sts=2 et
-augroup END
+augroup end
 
 " Lovely linenumbers
 set nu
@@ -92,6 +118,9 @@ set nu
 set incsearch
 set ignorecase
 set smartcase
+
+" Autocomplete
+set pumheight=15
 
 " To display the status line always
 set laststatus=2
@@ -106,6 +135,8 @@ nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 
 map <leader>e :Explore<cr>
 map <leader>] :CtrlPMRU<cr>
+
+nnoremap <Leader>c :GitGutterUndoHunk<cr>
 
 let g:vue_disable_pre_processors = 1
 autocmd FileType vue syntax sync fromstart
@@ -156,30 +187,19 @@ map N <Plug>(easymotion-prev)
 set tags=./tags; " Set tags directory
 
 " BACKUP / TMP FILES
-set backupdir-=.
-set backupdir+=.
-set backupdir-=~/
 set backupdir^=~/.vim/backup/
-set backupdir^=./.vim-backup/
 set backup
 
 " Save your swp files to a less annoying place than the current directory.
 " " If you have .vim-swap in the current directory, it'll use that.
 " " Otherwise it saves it to ~/.vim/swap, ~/tmp or .
-set directory=./.vim-swap/
-set directory+=~/.vim/swap/
-set directory+=~/tmp/
-set directory+=.
-
-" viminfo stores the the state of your previous editing session
-set viminfo+=n~/.vim/viminfo
+set directory=~/.vim/swap/
 
 " undofile - This allows you to use undos after exiting and restarting
 " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
 " :help undo-persistence
 " This is only present in 7.3+
-set undodir=./.vim-undo/
-set undodir+=~/.vim/undo/
+set undodir=~/.vim/undo/
 set undofile
 
 " Gvim humanizer
@@ -195,9 +215,16 @@ if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
+if has('nvim')
+  set viminfo+=n~/.config/nvim/viminfo
+else
+  set viminfo+=n~/.vim/viminfo
+endif
+
+nnoremap <silent><esc><esc> :noh<return>
+
 " netrw settings
 let g:netrw_liststyle = 3
-let g:netrw_banner = 0
 
 " Open nertw on vim load
 autocmd VimEnter * if !argc() | Explore | endif
