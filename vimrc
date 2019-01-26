@@ -1,8 +1,3 @@
-set autoread
-set nocompatible " be iMproved
-" For vundle
-filetype off
-
 call plug#begin()
 
 " Good looking bottom :)
@@ -69,7 +64,6 @@ Plug 'slim-template/vim-slim'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
 Plug 'ElmCast/elm-vim'
 Plug 'posva/vim-vue'
 
@@ -92,17 +86,14 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
 
-let g:alchemist#elixir_erlang_src = $HOME."/Documents"
-
-set completeopt=menu,menuone,preview,noselect,noinsert
 autocmd BufWritePost * GitGutter
 
 set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
 
+filetype plugin indent on " Enable filetype-specific indenting and plugins
 syntax on                 " Enable syntax highlighting
 syntax enable             " Syntax highlighting and theme
-filetype plugin indent on " Enable filetype-specific indenting and plugins
 
 augroup myfiletypes
   " Clear old autocmds in group
@@ -112,7 +103,7 @@ augroup myfiletypes
 augroup end
 
 " Lovely linenumbers
-set nu
+set number
 
 " Searching
 set incsearch
@@ -120,7 +111,7 @@ set ignorecase
 set smartcase
 
 " Autocomplete
-set pumheight=15
+set pumheight=20
 
 " To display the status line always
 set laststatus=2
@@ -139,7 +130,6 @@ map <leader>] :CtrlPMRU<cr>
 nnoremap <Leader>c :GitGutterUndoHunk<cr>
 
 let g:vue_disable_pre_processors = 1
-autocmd FileType vue syntax sync fromstart
 
 let g:airline_powerline_fonts=1
 
@@ -191,29 +181,14 @@ set backupdir^=~/.vim/backup/
 set backup
 
 " Save your swp files to a less annoying place than the current directory.
-" " If you have .vim-swap in the current directory, it'll use that.
-" " Otherwise it saves it to ~/.vim/swap, ~/tmp or .
 set directory=~/.vim/swap/
 
 " undofile - This allows you to use undos after exiting and restarting
-" This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-" :help undo-persistence
-" This is only present in 7.3+
 set undodir=~/.vim/undo/
 set undofile
 
-" Gvim humanizer
-set guioptions-=m " Removes actionbar
-set guioptions-=T " Removes top toolbar
-set guioptions-=r " Removes right hand scroll bar
-set go-=L " Removes left hand scroll bar
-set guifont=Roboto\ Mono\ for\ Powerline:h15
-
 " Disable sound
 set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
 
 if has('nvim')
   set viminfo+=n~/.config/nvim/viminfo
@@ -221,6 +196,7 @@ else
   set viminfo+=n~/.vim/viminfo
 endif
 
+" remove search heightlight on esc
 nnoremap <silent><esc><esc> :noh<return>
 
 " netrw settings
