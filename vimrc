@@ -86,8 +86,6 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
 
-autocmd BufWritePost * GitGutter
-
 set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
 
@@ -95,12 +93,8 @@ filetype plugin indent on " Enable filetype-specific indenting and plugins
 syntax on                 " Enable syntax highlighting
 syntax enable             " Syntax highlighting and theme
 
-augroup myfiletypes
-  " Clear old autocmds in group
-  autocmd!
-  " autoindent with two spaces, always expand tabs
-  autocmd FileType * set ai sw=2 sts=2 et
-augroup end
+" autoindent with two spaces, always expand tabs
+autocmd FileType * set ai sw=2 sts=2 et
 
 " Lovely linenumbers
 set number
@@ -127,9 +121,11 @@ nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 map <leader>e :Explore<cr>
 map <leader>] :CtrlPMRU<cr>
 
+autocmd BufWritePost * GitGutter
 nnoremap <Leader>c :GitGutterUndoHunk<cr>
 
 let g:vue_disable_pre_processors = 1
+autocmd FileType vue syntax sync fromstart
 
 let g:airline_powerline_fonts=1
 
