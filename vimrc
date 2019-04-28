@@ -200,3 +200,7 @@ let g:netrw_liststyle = 3
 
 " Open nertw on vim load
 autocmd VimEnter * if !argc() | Explore | endif
+
+highlight GitGutterAdd ctermfg=2 ctermbg=238
+highlight GitGutterChange ctermfg=3 ctermbg=238
+highlight GitGutterDelete ctermfg=1 ctermbg=238
