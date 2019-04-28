@@ -43,21 +43,7 @@ Plug 'vim-scripts/lastpos.vim'
 " Netrw improved
 Plug 'tpope/vim-vinegar'
 " Languageserver client
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
-" Fuzzy finder (Languageserver requirement)
-Plug 'junegunn/fzf'
-
-" Autocomplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
 " Syntax highlight
 Plug 'slim-template/vim-slim'
@@ -73,18 +59,6 @@ colorscheme lucius
 let g:airline_theme='lucius'
 let g:lucius_style = 'dark'
 let g:lucius_no_term_bg = 1
-
-let g:deoplete#enable_at_startup = 1
-
-let g:LanguageClient_serverCommands = {
-      \ 'ruby': ['solargraph', 'stdio'],
-      \ }
-
-" LanguageClient bindings
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
 
 set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
@@ -110,9 +84,33 @@ set pumheight=20
 " To display the status line always
 set laststatus=2
 
+" https://github.com/neoclide/coc.nvim#example-vim-configuration
 " <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " send to tmux panel
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
@@ -197,6 +195,7 @@ nnoremap <silent><esc><esc> :noh<return>
 
 " netrw settings
 let g:netrw_liststyle = 3
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 " Open nertw on vim load
 autocmd VimEnter * if !argc() | Explore | endif
@@ -204,3 +203,8 @@ autocmd VimEnter * if !argc() | Explore | endif
 highlight GitGutterAdd ctermfg=2 ctermbg=238
 highlight GitGutterChange ctermfg=3 ctermbg=238
 highlight GitGutterDelete ctermfg=1 ctermbg=238
+highlight CocFloating ctermfg=253 ctermbg=238
+highlight CocErrorSign ctermfg=Red ctermbg=238
+highlight CocWarningSign ctermfg=Brown ctermbg=238
+highlight CocInfoSign ctermfg=Yellow ctermbg=238
+highlight CocHintSign ctermfg=Blue ctermbg=238
