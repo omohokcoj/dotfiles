@@ -8,8 +8,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jonathanfilip/vim-lucius'
 " Commenting and uncommenting stuff
 Plug 'tomtom/tcomment_vim'
-" Fuzzu finder for vim (CTRL+P)
-Plug 'kien/ctrlp.vim'
 " Easy motion for easy motion
 Plug 'Lokaltog/vim-easymotion'
 " Automatically save changes to disk
@@ -20,6 +18,10 @@ Plug 'rking/ag.vim'
 Plug 't9md/vim-textmanip'
 " Git diff
 Plug 'airblade/vim-gitgutter'
+" Git commands
+Plug 'tpope/vim-fugitive'
+" Github
+Plug 'tpope/vim-rhubarb'
 " History
 Plug 'sjl/gundo.vim'
 " Stedier moving
@@ -44,6 +46,9 @@ Plug 'vim-scripts/lastpos.vim'
 Plug 'tpope/vim-vinegar'
 " Languageserver client
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Syntax highlight
 Plug 'slim-template/vim-slim'
@@ -117,7 +122,8 @@ vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 
 map <leader>e :Explore<cr>
-map <leader>] :CtrlPMRU<cr>
+map <leader>] :History<cr>
+nnoremap <silent> <C-p> :FZF<CR>
 
 autocmd BufWritePost * GitGutter
 nnoremap <Leader>c :GitGutterUndoHunk<cr>
@@ -130,12 +136,6 @@ let g:airline_powerline_fonts=1
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_silent = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
-
-" Sane Ignore For ctrlp
-let g:ctrlp_custom_ignore = { 'dir':  '\v[\/](doc|tmp|node_modules)' }
-
-" ctrlp .gitignore
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Sane ag command
 let g:ag_prg='ag --nocolor --nogroup --column'
