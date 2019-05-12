@@ -121,12 +121,13 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 
-map <leader>e :Explore<cr>
+map <leader>e <Plug>VinegarUp
 map <leader>] :History<cr>
 nnoremap <silent> <C-p> :FZF<CR>
 
 autocmd BufWritePost * GitGutter
 nnoremap <Leader>c :GitGutterUndoHunk<cr>
+nnoremap <Leader>p :GitGutterPreviewHunk<cr>
 
 let g:vue_disable_pre_processors = 1
 autocmd FileType vue syntax sync fromstart
@@ -193,9 +194,15 @@ endif
 " remove search heightlight on esc
 nnoremap <silent><esc><esc> :noh<return>
 
+" fzf panel size
+let g:fzf_layout = { 'down': '~30%' }
+
 " netrw settings
-let g:netrw_liststyle = 3
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+
+" netrw mapping
+autocmd FileType netrw nmap <buffer> h -
+autocmd FileType netrw nmap <buffer> l <cr>
 
 " Open nertw on vim load
 autocmd VimEnter * if !argc() | Explore | endif
