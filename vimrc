@@ -25,7 +25,7 @@ Plug 'tpope/vim-rhubarb'
 " History
 Plug 'sjl/gundo.vim'
 " Stedier moving
-Plug 'vim-scripts/camelcasemotion'
+Plug 'chaoren/vim-wordmotion'
 " Tabulations
 Plug 'godlygeek/tabular'
 " Repeater required by Easyclip
@@ -65,7 +65,6 @@ let g:airline_theme='lucius'
 let g:lucius_style = 'dark'
 let g:lucius_no_term_bg = 1
 
-set autoindent " Auto indention should be on
 set clipboard=unnamed,unnamedplus
 
 filetype plugin indent on " Enable filetype-specific indenting and plugins
@@ -73,7 +72,7 @@ syntax on                 " Enable syntax highlighting
 syntax enable             " Syntax highlighting and theme
 
 " autoindent with two spaces, always expand tabs
-autocmd FileType * set ai sw=2 sts=2 et
+set ai sw=2 sts=2 et
 
 " Lovely linenumbers
 set number
@@ -148,14 +147,6 @@ xmap <C-j> <Plug>(textmanip-move-down)
 xmap <C-k> <Plug>(textmanip-move-up)
 xmap <C-h> <Plug>(textmanip-move-left)
 xmap <C-l> <Plug>(textmanip-move-right)
-
-" Split words by camelcase
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-sunmap w
-sunmap b
-sunmap e
 
 " easy-motion keys
 " nmap . <Plug>(easymotion-s2)
