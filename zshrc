@@ -1,16 +1,9 @@
-source ~/.zplug/init.zsh
-
-zplug "plugins/extract", from:oh-my-zsh
-zplug "plugins/rake-fast", from:oh-my-zsh
-zplug "plugins/autojump", from:oh-my-zsh
-zplug "plugins/colorize", from:oh-my-zsh
-zplug "plugins/asdf", from:oh-my-zsh
-zplug "lib/history", from:oh-my-zsh
-zplug "lib/git", from:oh-my-zsh
-zplug "lib/completion", from:oh-my-zsh
-zplug "zsh-users/zsh-autosuggestions"
-
-zplug load
+source ~/.zsh/oh-my-zsh/plugins/asdf/asdf.plugin.zsh
+source ~/.zsh/oh-my-zsh/plugins/autojump/autojump.plugin.zsh
+source ~/.zsh/oh-my-zsh/lib/git.zsh
+source ~/.zsh/oh-my-zsh/lib/history.zsh
+source ~/.zsh/oh-my-zsh/lib/completion.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 setopt PROMPT_SUBST
 PROMPT='%n%f@%m%f %F{green}%1~%f%F{yellow}$(git_current_branch_short)%f %# '
@@ -21,6 +14,10 @@ bindkey -v
 # excape squale brackets in rake task
 alias rake='noglob spring rake'
 alias rspec='spring rspec'
+alias vim="nvim"
+
+# enable completion
+autoload -Uz compinit && compinit
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
