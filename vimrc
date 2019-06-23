@@ -75,6 +75,10 @@ syntax enable             " Syntax highlighting and theme
 " autoindent with two spaces, always expand tabs
 set ai sw=2 sts=2 et
 
+" speed
+set lazyredraw
+set synmaxcol=256
+
 " Lovely linenumbers
 set number
 
