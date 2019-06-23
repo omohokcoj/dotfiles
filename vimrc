@@ -39,9 +39,9 @@ Plug 'bronson/vim-trailing-whitespace'
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
 " Send command to tmux
-Plug 'brauner/vimtux'
+Plug 'jgdavey/tslime.vim'
 " Restore cursor position
-Plug 'vim-scripts/lastpos.vim'
+Plug 'farmergreg/vim-lastplace'
 " Netrw improved
 Plug 'tpope/vim-vinegar'
 " Languageserver client
@@ -55,8 +55,9 @@ Plug 'slim-template/vim-slim'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'elixir-lang/vim-elixir'
-Plug 'ElmCast/elm-vim'
 Plug 'posva/vim-vue'
+Plug 'leafgarland/typescript-vim'
+Plug 'thoughtbot/vim-rspec'
 
 call plug#end()
 
@@ -120,7 +121,9 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 
-map <leader>e <Plug>VinegarUp
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+
 map <leader>] :History<cr>
 nnoremap <silent> <C-p> :FZF<CR>
 
@@ -190,6 +193,11 @@ let g:fzf_layout = { 'down': '~30%' }
 
 " netrw settings
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+let g:netrw_localrmdir='rm -r'
+
+" rspec
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+map <Leader>r :call RunNearestSpec()<CR>
 
 " netrw mapping
 autocmd FileType netrw nmap <buffer> h -
