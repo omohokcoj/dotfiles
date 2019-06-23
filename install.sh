@@ -6,8 +6,14 @@ fi
 
 ln -sf "$SCRIPT_PATH/vimrc" ~/.vimrc
 
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 
+if [ -f ~/.tmux.conf ]; then
+  cp ~/.tmux.conf "$SCRIPT_PATH/tmux-old.conf"
 fi
 
-vim +PluginInstall +qall
+ln -sf "$SCRIPT_PATH/tmux.conf" ~/.tmux.conf
+
+if [ -f ~/.zshrc ]; then
+  cp ~/..zshrc "$SCRIPT_PATH/zshrc-old"
+fi
+
+ln -sf "$SCRIPT_PATH/.zshrc" ~/.zshrc
