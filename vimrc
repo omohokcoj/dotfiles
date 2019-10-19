@@ -45,7 +45,7 @@ Plug 'farmergreg/vim-lastplace'
 " Netrw improved
 Plug 'tpope/vim-vinegar'
 " Languageserver client
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', { 'tag': '*', 'branch': 'release' }
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -128,7 +128,7 @@ nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 let g:tslime_always_current_session = 1
 let g:tslime_always_current_window = 1
 
-map <leader>] :History<cr>
+map <silent><leader>] :History<cr>
 nnoremap <silent> <C-p> :FZF<CR>
 
 autocmd BufWritePost * GitGutter
@@ -197,7 +197,7 @@ let g:fzf_layout = { 'down': '~30%' }
 
 " netrw settings
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-let g:netrw_localrmdir='rm -r'
+let g:netrw_localrmdir='rm -rf'
 
 " rspec
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
@@ -206,10 +206,13 @@ map <Leader>r :call RunNearestSpec()<CR>
 " netrw mapping
 autocmd FileType netrw nmap <buffer> h -
 autocmd FileType netrw nmap <buffer> l <cr>
+autocmd FileType netrw nnoremap <silent><buffer> <c-l> :TmuxNavigateRight<cr>
 
 " Open nertw on vim load
 autocmd VimEnter * if !argc() | Explore | endif
 
+highlight DiffAdded ctermfg=2 ctermbg=238
+highlight DiffRemoved ctermfg=1 ctermbg=238
 highlight GitGutterAdd ctermfg=2 ctermbg=238
 highlight GitGutterChange ctermfg=3 ctermbg=238
 highlight GitGutterDelete ctermfg=1 ctermbg=238

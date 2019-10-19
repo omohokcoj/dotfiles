@@ -13,7 +13,7 @@ fi
 ln -sf "$SCRIPT_PATH/tmux.conf" ~/.tmux.conf
 
 if [ -f ~/.zshrc ]; then
-  cp ~/..zshrc "$SCRIPT_PATH/zshrc-old"
+  cp ~/.zshrc "$SCRIPT_PATH/zshrc-old"
 fi
 
 ln -sf "$SCRIPT_PATH/.zshrc" ~/.zshrc

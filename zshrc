@@ -11,7 +11,7 @@ PROMPT='%n%f@%m%f %F{green}%1~%f%F{yellow}$(git_current_branch_short)%f %# '
 # vi mode
 bindkey -v
 
-# excape squale brackets in rake task
+# escape square brackets in rake task
 alias rake='noglob spring rake'
 alias rspec='spring rspec'
 alias vim="nvim"
@@ -27,3 +27,6 @@ bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+[ -f ~/miniconda3/etc/profile.d/conda.sh ] && source ~/miniconda3/etc/profile.d/conda.sh
